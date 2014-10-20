@@ -4,55 +4,79 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-export TERM=xterm-256color
+HISTSIZE=10000
 
-export PS1="\[[33m\]\A \[[32m\]\u@\h \[[34m\]\w \$ \[[0m\]"
-export PATH=$PATH:~/Scripts
+export PATH=$PATH:~/bin
 
-### Aliases and function helpers ###
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
-# BASH Helpers
+alias colors='{
+  echo -e -n "${black}black ${Black}Black ${on_white}${BLACK}BLACK$off "
+  echo -e -n "${red}red ${Red}Red ${on_yellow}${RED}RED$off "
+  echo -e -n "${green}green ${Green}Green ${on_blue}${GREEN}GREEN$off "
+  echo -e -n "${yellow}yellow ${Yellow}Yellow ${on_red}${YELLOW}YELLOW$off "
+  echo -e -n "${blue}blue ${Blue}Blue ${on_green}${BLUE}BLUE$off "
+  echo -e -n "${purple}purple ${Purple}Purple ${on_cyan}${PURPLE}PURPLE$off "
+  echo -e -n "${cyan}cyan ${Cyan}Cyan ${on_blue}${CYAN}CYAN$off "
+  echo -e -n "${white}white ${White}White ${on_purple}${WHITE}WHITE$off \n"
+}'
+
+source ~/.colors
+function color_my_prompt {
+    local user_and_host="\[${Yellow}\]\u@\h"
+    local current_location="\[${Cyan}\]\w"
+    local git_branch_color="\[${Red}\]"
+    local git_branch='`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`'
+    local prompt_tail="\[${Purple}\]$"
+    local last_color="\[${off}\]"
+    export PS1="$current_location $git_branch_color$git_branch$prompt_tail$last_color "
+}
+color_my_prompt
+
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+#BASH Helpers
 alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias countfiles='for t in files links directories; do echo `find . -type ${t:0:1} | wc -l` $t; done 2> /dev/null'
 
-# Text Editing
-alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
+# git aliases
 
-# Pretty print code
-alias enscript_c='enscript -q -B -C -Ec -G --color --word-wrap -f Courier9 -MLetter -p - $@'
-alias enscript_python='enscript -q -B -C -Epython -G --color --word-wrap -f Courier9 -MLetter -p - $@'
+alias gpp="git pull; git push"
+alias gp="git pull"
+alias gpu="git push"
+alias gs="git status"
+alias ga="git add ."
+alias gr="git reset --hard HEAD"
+alias gg='git log --graph --pretty=format:"%Cred%h%Creset %Cgreen%ci%Creset %Cblue%an%Creset %s %C(red reverse)%d%Creset"'
+alias ggh='gg|head'
 
-# useful tools
-alias servedir='python -m SimpleHTTPServer'
-
-# open command in new tab in iTerm
-tab() {
-        osascript -e "
-        tell application \"iTerm\"
-         tell the first terminal
-          set currentSession to current session
-          launch session \"Default Session\"
-          tell the last session
-           write text \"cd $(pwd)\"
-           write text \"$*\"
-          end tell
-          select currentSession
-         end tell
-        end tell"
+# Git function to commit and push
+cap() {
+  git add . ;
+  git commit -m "$1";
+  git pull;
+  git push;
 }
 
-# outdated Debian VM
-#alias sshdev='ssh roneil@172.16.166.133 $@'
-#alias sshrootdev='ssh root@172.16.166.133 $@'
-#alias startdev='/Library/Application\ Support/VMware\ Fusion/vmrun start ~/Documents/Virtual\ Machines.localized/Debian\ 5\ 64-bit.vmwarevm/Debian\ 5\ 64-bit.vmx nogui'
-#alias stopdev='sshrootdev shutdown -h now'
+caph() {
+	git add . ;
+  git commit -m "$1";
+  git pull;
+  git push;
+	git push heroku master;
+}
 
-# tmux aliases
+# Tmux stuff
 alias tma='tmux attach -d -t'
-alias git-tmux='tmux new -s $(basename $(pwd))'
+alias git-tmux='tmux new -s $(basename $(pwd))' alias tml='tmux ls' 
 
-# git -> g
-alias g='git'
+# Backslash stuff
+alias venv='. venv/bin/activate'
+alias ngrok='~/ngrok -authtoken HvlLtHIF_fKDrbAAv5Fo -subdomain=elephantpoomother999 5000'
+alias stag='tmuxifier load-session stag'

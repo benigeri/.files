@@ -16,8 +16,8 @@ if install_ask "git"; then
   # create .gitconfig-local if it doesn't exist
   if [ ! -e ~/.gitconfig-local ]; then
     echo "[user]
-    name = Example person
-    email = example@example.com" > ~/.gitconfig-local
+    name = Paul Benigeri 
+    email = me@benigeri.com" > ~/.gitconfig-local
 
     echo "Edit local configuration options (name, email, etc.) in ~/.giconfig-local"
   fi
@@ -31,10 +31,6 @@ if install_ask "osx"; then
   if install_ask "iterm"; then
     open osx/iterm/*
   fi
-fi
-
-if install_ask "ssh"; then
-  stow ssh
 fi
 
 if install_ask "tmux"; then
