@@ -1,6 +1,4 @@
-#!/bin/bash
-
-#set -o xtrace
+#!/bin/bash #set -o xtrace
 set -e
 
 function install_ask {
@@ -29,14 +27,6 @@ fi
 
 if install_ask "osx"; then
   ./osx/defaults.sh
-
-  if install_ask "enable trim"; then
-    ./osx/trim_enabler.sh
-  fi
-
-  if install_ask "fonts"; then
-    open osx/fonts/*
-  fi
 
   if install_ask "iterm"; then
     open osx/iterm/*
