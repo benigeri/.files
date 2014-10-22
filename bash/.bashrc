@@ -4,6 +4,8 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+export EDITOR=vim
+
 HISTSIZE=10000
 
 export PATH=$PATH:~/bin
@@ -74,9 +76,14 @@ caph() {
 
 # Tmux stuff
 alias tma='tmux attach -d -t'
-alias git-tmux='tmux new -s $(basename $(pwd))' alias tml='tmux ls' 
+alias git-tmux='tmux new -s $(basename $(pwd))'
+alias tml='tmux ls' 
+
+# Tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
+alias stag='tmuxifier load-session stag'
 
 # Backslash stuff
 alias venv='. venv/bin/activate'
 alias ngrok='~/ngrok -authtoken HvlLtHIF_fKDrbAAv5Fo -subdomain=elephantpoomother999 5000'
-alias stag='tmuxifier load-session stag'

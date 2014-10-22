@@ -34,6 +34,9 @@ if install_ask "osx"; then
 fi
 
 if install_ask "tmux"; then
+  if [ ! -d ~/.tmuxifier ]; then
+    git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
+  fi
   stow tmux
 fi
 
