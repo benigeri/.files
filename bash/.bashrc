@@ -57,6 +57,7 @@ alias ga="git add ."
 alias gr="git reset --hard HEAD"
 alias gg='git log --graph --pretty=format:"%Cred%h%Creset %Cgreen%ci%Creset %Cblue%an%Creset %s %C(red reverse)%d%Creset"'
 alias ggh='gg|head'
+alias gclean='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 
 # Git function to commit and push
 cap() {
@@ -87,3 +88,5 @@ alias stag='tmuxifier load-session stag'
 # Backslash stuff
 alias venv='. venv/bin/activate'
 alias ngrok='~/ngrok -authtoken HvlLtHIF_fKDrbAAv5Fo -subdomain=elephantpoomother999 5000'
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

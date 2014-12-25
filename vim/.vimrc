@@ -1,16 +1,10 @@
 
-" set number
-syntax on
-
 set showmatch
 set nobackup
 set noswapfile
 set ruler
 
 set shiftround
-
-" highlight current line
-" set cul
 
 " visual bell instead of beeping
 set vb
@@ -26,7 +20,6 @@ let mapleader = ','
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
-
 
 " NeoBundle setup
 set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -47,16 +40,48 @@ filetype plugin indent on
 " File browser addons
 NeoBundle 'scrooloose/nerdtree' " simple file browser
 let NERDTreeShowHidden = 1
-map <F10> :NERDTreeToggle<cr> 
-vmap <F10> <esc>:NERDTreeToggle<cr> 
-nmap <F10> <esc>:NERDTreeToggle<cr> 
-imap <F10> <esc>:NERDTreeToggle<cr>
+map <F12> :NERDTreeToggle<cr> 
+vmap <F12> <esc>:NERDTreeToggle<cr> 
+nmap <F12> <esc>:NERDTreeToggle<cr> 
+imap <F12> <esc>:NERDTreeToggle<cr>
 
 let NERDTreeIgnore = ['\.pyc$', '\.\~']
 
+" Syntax highlighting stuff
 
-" Extra syntax plugins
+" set number
+syntax on
+
+" more colors = better syntax highlighting
+set t_Co=256
+
+" syntax highlighting for markdown
 NeoBundle 'tpope/vim-markdown'
+
+" better js syntax
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
+
+" JS call folding
+" au FileType javascript call JavaScriptFold()
+
+" Indent guides
+NeoBundle 'nathanaelkane/vim-indent-guides' 
+colorscheme vimbrant
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+hi IndentGuidesOdd  ctermbg=235
+hi IndentGuidesEven ctermbg=236
+map <F10> <esc>:IndentGuidesToggle<cr> 
+vmap <F10> <esc>:IndentGuidesToggle<cr> 
+nmap <F10> <esc>:IndentGuidesToggle<cr> 
+imap <F10> <esc>:IndentGuidesToggle<cr>
+
+"Automatically cause brackets and stuff
+NeoBundle 'Raimondi/delimitMate'
+
+"Trigger line split, only in insert mode
+imap <C-c> <CR><Esc>O
 
 " Search settings
 set hlsearch
@@ -78,20 +103,39 @@ au FileType python setl sw=4 sts=4 et
 set textwidth=90
 set autoindent
 
+"Linting stuff
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_always_populate_loc_list = 1
+nmap <silent> m <esc>:lprev<cr>
+nmap <silent> , <esc>:lnext<cr>
+
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 
 " Maps shift-[h,j,k,l] to resizing a window split
 map <silent> <S-h> <C-w><
 map <silent> <S-j> <C-W>-
 map <silent> <S-k> <C-W>+
 map <silent> <S-l> <C-w>>
+
+" Autocompletion
+let g:neocomplete#enable_at_startup = 1
+NeoBundle 'Valloric/YouCompleteMe'
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_add_preview_to_completeopt=0
+let g:ycm_confirm_extra_conf=0
+set completeopt-=preview
+
+" Better autocompletion for js
+NeoBundle 'marijnh/tern_for_vim' 
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Verify NeoBundle installation
 NeoBundleCheck
