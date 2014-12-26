@@ -78,12 +78,12 @@ caph() {
 # Tmux stuff
 alias tma='tmux attach -d -t'
 alias git-tmux='tmux new -s $(basename $(pwd))'
-alias tml='tmux ls' 
+alias tml='tmux ls'
 
 # Tmuxifier
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
-alias stag='tmuxifier load-session stag'
+alias ts='tmuxifier load-session'
 
 # Backslash stuff
 alias venv='. venv/bin/activate'

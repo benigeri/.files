@@ -40,9 +40,9 @@ filetype plugin indent on
 " File browser addons
 NeoBundle 'scrooloose/nerdtree' " simple file browser
 let NERDTreeShowHidden = 1
-map <F12> :NERDTreeToggle<cr> 
-vmap <F12> <esc>:NERDTreeToggle<cr> 
-nmap <F12> <esc>:NERDTreeToggle<cr> 
+map <F12> :NERDTreeToggle<cr>
+vmap <F12> <esc>:NERDTreeToggle<cr>
+nmap <F12> <esc>:NERDTreeToggle<cr>
 imap <F12> <esc>:NERDTreeToggle<cr>
 
 let NERDTreeIgnore = ['\.pyc$', '\.\~']
@@ -66,15 +66,15 @@ NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']
 " au FileType javascript call JavaScriptFold()
 
 " Indent guides
-NeoBundle 'nathanaelkane/vim-indent-guides' 
+NeoBundle 'nathanaelkane/vim-indent-guides'
 colorscheme vimbrant
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=236
-map <F10> <esc>:IndentGuidesToggle<cr> 
-vmap <F10> <esc>:IndentGuidesToggle<cr> 
-nmap <F10> <esc>:IndentGuidesToggle<cr> 
+map <F10> <esc>:IndentGuidesToggle<cr>
+vmap <F10> <esc>:IndentGuidesToggle<cr>
+nmap <F10> <esc>:IndentGuidesToggle<cr>
 imap <F10> <esc>:IndentGuidesToggle<cr>
 
 "Automatically cause brackets and stuff
@@ -109,6 +109,10 @@ let g:syntastic_always_populate_loc_list = 1
 nmap <silent> m <esc>:lprev<cr>
 nmap <silent> , <esc>:lnext<cr>
 
+NeoBundle 'mxw/vim-jsx'
+let g:syntastic_javascript_checkers = ["jsxhint", "jsxcs"]
+
+
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -134,7 +138,7 @@ let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
 " Better autocompletion for js
-NeoBundle 'marijnh/tern_for_vim' 
+NeoBundle 'marijnh/tern_for_vim'
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Verify NeoBundle installation
