@@ -9,6 +9,9 @@ set shiftround
 " visual bell instead of beeping
 set vb
 
+" Make backspace work again in insert mode
+set backspace=indent,eol,start
+
 "better window nav
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -55,6 +58,10 @@ syntax on
 " more colors = better syntax highlighting
 set t_Co=256
 
+"sass syntax
+
+NeoBundle 'cakebaker/scss-syntax.vim'
+let g:syntastic_scss_checkers = ['scss_lint']
 " syntax highlighting for markdown
 NeoBundle 'tpope/vim-markdown'
 
@@ -120,7 +127,8 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 
 " Maps shift-[h,j,k,l] to resizing a window split
