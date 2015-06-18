@@ -5,6 +5,7 @@ if [[ $- != *i* ]] ; then
 fi
 
 export EDITOR=vim
+export REACT_EDITOR=vim
 
 HISTSIZE=10000
 
@@ -90,3 +91,8 @@ alias venv='. venv/bin/activate'
 alias ngrok='~/ngrok -authtoken HvlLtHIF_fKDrbAAv5Fo -subdomain=elephantpoomother999 5000'
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+alias fuck='$(thefuck $(fc -ln -1))'
+
+alias git=hub
+

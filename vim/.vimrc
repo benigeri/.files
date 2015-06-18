@@ -61,7 +61,7 @@ set t_Co=256
 "sass syntax
 
 NeoBundle 'cakebaker/scss-syntax.vim'
-let g:syntastic_scss_checkers = ['scss_lint']
+"let g:syntastic_scss_checkers = ['scss_lint']
 " syntax highlighting for markdown
 NeoBundle 'tpope/vim-markdown'
 
@@ -111,14 +111,10 @@ set textwidth=90
 set autoindent
 
 "Linting stuff
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_always_populate_loc_list = 1
-nmap <silent> m <esc>:lprev<cr>
-nmap <silent> , <esc>:lnext<cr>
-
-NeoBundle 'mxw/vim-jsx'
-let g:syntastic_javascript_checkers = ["jsxhint", "jsxcs"]
-
+"NeoBundle 'scrooloose/syntastic'
+"let g:syntastic_always_populate_loc_list = 1
+"nmap <silent> m <esc>:lprev<cr>
+"nmap <silent> , <esc>:lnext<cr>
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 fun! <SID>StripTrailingWhitespaces()
