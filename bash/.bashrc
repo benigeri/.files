@@ -42,7 +42,7 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 #BASH Helpers
-alias ls='ls -G'
+alias ls='ls -G --color'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
@@ -88,11 +88,8 @@ alias ts='tmuxifier load-session'
 
 # Backslash stuff
 alias venv='. venv/bin/activate'
-alias ngrok='~/ngrok -authtoken HvlLtHIF_fKDrbAAv5Fo -subdomain=elephantpoomother999 5000'
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 alias fuck='$(thefuck $(fc -ln -1))'
 
-alias git=hub
+# alias git=hub
 
