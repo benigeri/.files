@@ -30,7 +30,9 @@ let mapleader = ','
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 
-" Syntax highlighting stuff
+" Json syntax highlighting
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
 
 " set number
 syntax on
