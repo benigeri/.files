@@ -14,6 +14,7 @@ set background=dark
 colorscheme vimbrant
 highlight ColorColumn ctermbg=7
 highlight ColorColumn guibg=Gray
+syntax on
 
 " Make backspace work again in insert mode
 set backspace=indent,eol,start
@@ -32,10 +33,6 @@ set wildignore=*.o,*~,*.pyc
 
 " Json syntax highlighting
 autocmd BufNewFile,BufRead *.json set ft=javascript
-
-
-" set number
-syntax on
 
 " more colors = better syntax highlighting
 set t_Co=256
@@ -148,3 +145,5 @@ call neobundle#end()
 
 " Verify NeoBundle installation
 NeoBundleCheck
+
+syntax on

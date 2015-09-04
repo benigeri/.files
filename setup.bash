@@ -1,4 +1,5 @@
-#!/bin/bash #set -o xtrace
+#!/bin/bash 
+#set -o xtrace
 set -e
 
 function install_ask {
