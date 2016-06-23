@@ -110,9 +110,11 @@ NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']
 
 " file search with ctrl p
 NeoBundle 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|spec/fixtures'
 
 " comment visual blocks with 'gc'
 NeoBundle 'tpope/vim-commentary'
+autocmd FileType ruby setlocal commentstring=#\ %s
 
 " automatically insert ending statements (ex. esac or fi in bash)
 NeoBundle 'tpope/vim-endwise'
@@ -147,3 +149,6 @@ call neobundle#end()
 NeoBundleCheck
 
 syntax on
+
+let $BASH_ENV = "~/.bash_aliases"
+
