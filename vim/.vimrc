@@ -102,7 +102,7 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'tpope/vim-markdown'
 
 " Syntax highlighting for jsx
-NeoBundle 'git://github.com/jsx/jsx.vim.git'
+NeoBundle 'jsx/jsx.vim'
 
 " better js syntax
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
