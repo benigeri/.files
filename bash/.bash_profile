@@ -4,3 +4,5 @@
 PATH=/opt/local/bin:$PATH
 PATH=/opt/local/bin/vim:$PATH
 
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

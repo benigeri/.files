@@ -40,13 +40,15 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 #BASH Helpers
-# alias ls='ls -G --color'
+alias ls='ls -G --color'
 # alias ll='ls -l'
 # alias la='ls -A'
 # alias l='ls -CF'
 # alias countfiles='for t in files links directories; do echo `find . -type ${t:0:1} | wc -l` $t; done 2> /dev/null'
 
 # Git function to commit and push
+
+alias gitrecent='git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"'
 cap() {
   git add . ;
   git commit -m "$1";
@@ -69,3 +71,6 @@ eval "$(tmuxifier init -)"
 # Alist hub so it wraps git
 eval "$(hub alias -s)"
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
